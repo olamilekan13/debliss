@@ -42,7 +42,7 @@ class PdfMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'emails.contact', // Ensure this view exists
+            view: 'emails.pdf', // Ensure this view exists
         );
     }
 
@@ -53,7 +53,7 @@ class PdfMail extends Mailable
      */
     public function attachments(): array
     {
-        // $attachments = [];
+        $attachments = [];
 
         // if (isset($this->emailData['file_path'])) {
         //     $attachments[] = Attachment::fromPath(
@@ -63,6 +63,6 @@ class PdfMail extends Mailable
         //     );
         // }
 
-        // return $attachments;
+        return $attachments;
     }
 }

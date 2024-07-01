@@ -51,14 +51,13 @@ class FileController extends Controller
                 'room_type' => 'required|string',
                 'room' => 'required|string',
                 'adult' => 'required|string',
-                'message' => 'required|string',
                 'children' => 'required|string',
             ]);
 
          
 
             // Save information to the database
-            $data = new ContactUs();
+            $data = new File();
             $data->name = $request->name;
             $data->email = $request->email;
             $data->phone_number = $request->phone_number;
@@ -77,17 +76,14 @@ class FileController extends Controller
                 'check_in' => $request->check_in,
                 'check_out' => $request->check_out,
                 'room_type' => $request->room_type,
-                'message' => $request->message,
-                'message' => $request->message,
-                'message' => $request->message,
+                'room' => $request->room,
+                'adult' => $request->adult,
+                'children' => $request->children,
                 'phone_number' => $request->phone_number,
-                'subject' => $request->subject,
-                'file_path' => $path,
-                'file_name' => $data->file_name,
             ];
             // dd($emailData);
 
-            Mail::to('response.homelinkers@gmail.com')->send(new Contact($emailData));
+            Mail::to('response.homelinkers@gmail.com')->send(new PdfMail($emailData));
 
             return response()->json(['message' => 'Data saved and email sent successfully', 'data'=> $data]);
         } catch (\Exception $e) {
